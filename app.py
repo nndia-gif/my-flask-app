@@ -5,16 +5,21 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    html = f"""
-    <html>
-      <head><title>Telegram → MQTT → Web</title></head>
-      <body style="font-family:sans-serif;text-align:center;margin-top:50px;">
-        <h2>Pesan terbaru dari Telegram:</h2>
-        <h1 style="color:green;">{latest_message}</h1>
-      </body>
-    </html>
-    """
-    return render_template_string(html)
+    global latest_message
+    try:
+        html = f"""
+        <html>
+          <head><title>Telegram → MQTT → Web</title></head>
+          <body style="font-family:sans-serif;text-align:center;margin-top:50px;">
+            <h2>Pesan terbaru dari Telegram:</h2>
+            <h1 style="color:green;">{latest_message}</h1>
+          </body>
+        </html>
+        """
+        return render_template_string(html)
+    except Exception as e:
+        return f"Error: {e}"
+
     
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
