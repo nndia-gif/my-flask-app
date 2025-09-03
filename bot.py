@@ -9,7 +9,7 @@ def handle_message(update: Update, context):
     mqtt_client.publish(TOPIC, payload)
     update.message.reply_text("Pesan terkirim ke Web!")
 
-updater = Updater(BOT_TOKEN)
+updater = Updater(8231334492:AAExey4xZ8HMKi3JE6hudJzaSSI358HUuVs)
 dp = updater.dispatcher
 dp.add_handler(MessageHandler(Filters.text, handle_message))
 updater.start_polling()
