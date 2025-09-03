@@ -4,9 +4,18 @@ import os
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    return "✅ Hello Railway, Flask is running!"
-
+def index():
+    html = f"""
+    <html>
+      <head><title>Telegram → MQTT → Web</title></head>
+      <body style="font-family:sans-serif;text-align:center;margin-top:50px;">
+        <h2>Pesan terbaru dari Telegram:</h2>
+        <h1 style="color:green;">{latest_message}</h1>
+      </body>
+    </html>
+    """
+    return render_template_string(html)
+    
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     # penting: jangan pakai debug=True
