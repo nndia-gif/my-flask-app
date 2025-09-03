@@ -2,11 +2,11 @@ from flask import Flask
 import os
 
 app = Flask(__name__)
+latest_message = "Belum ada pesan"
 
 @app.route("/")
 def index():
     global latest_message
-    try:
         html = f"""
         <html>
           <head><title>Telegram → MQTT → Web</title></head>
@@ -17,8 +17,8 @@ def index():
         </html>
         """
         return render_template_string(html)
-    except Exception as e:
-        return f"Error: {e}"
+    #except Exception as e:
+        #return f"Error: {e}"
 
     
 if __name__ == "__main__":
